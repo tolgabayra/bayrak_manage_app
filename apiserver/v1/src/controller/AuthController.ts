@@ -40,4 +40,34 @@ export class AuthController {
         }
     }
 
+
+
+    public RegisterUser = async (req: Request, res: Response): Promise<void> => {
+        try {
+            const password = this.helper.HashPassword(req.body.password)
+
+            const userData = {
+                id: req.body.id,
+                username: req.body.username,
+                email: req.body.email,
+                password: password
+            }
+            console.log(userData);
+
+            const newUser = await this.authService.Register(userData)
+            res.status(201).json(newUser)
+        } catch (error) {
+            console.log(error);
+
+            res.status(500).json(error)
+        }
+    }
+
+
+    public Logout = (req: Request, res: Response) => {
+        res.clearCookie('access_token');
+        res.clearCookie('refresh_token');
+        res.status(200).json({"message": "Log out is successfully "})
+    }
+
 }
