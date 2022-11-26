@@ -1,13 +1,14 @@
 import { Max, Min } from "class-validator";
-import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToMany, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 import { User } from "./User";
 
 
 
 @Entity("tb_tasks")
 export class Task{
+    @PrimaryColumn()
     @PrimaryGeneratedColumn("uuid")
-    id!: number
+    id!: string
 
     @Column()
     title!:string

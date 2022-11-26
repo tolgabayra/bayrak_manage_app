@@ -16,28 +16,39 @@ export class TaskService {
     /**
      * delete
      */
-    public delete(id: number) {
-        
+    public delete(id: any) {
+        const nowTask = this.taskRepository.findOneBy({
+            id: id
+        })
+        return this.taskRepository.remove(nowTask as any)
     }
 
     /**
      * update
      */
-    public update() {
-        
+    public update(id: any, data: Task) {
+        const nowUser = this.taskRepository.findOneBy({
+            id: id
+        })
+        return this.taskRepository.save({
+            ...nowUser,
+            ...data
+        })
     }
 
     /**
      * show
      */
-    public show() {
-        
+    public show(id: any) {
+        return this.taskRepository.findOneBy({
+            id: id
+        })
     }
 
     /**
      * list
      */
     public list() {
-        
+        return this.taskRepository.find()
     }
 }

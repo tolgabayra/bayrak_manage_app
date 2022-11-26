@@ -9,8 +9,9 @@ import {
 import { Task } from "./Task";
 @Entity("tb_users")
 export class User {
+    @PrimaryColumn()
     @PrimaryGeneratedColumn("uuid")
-    id!: number
+    id!: string
 
     @Min(3)
     @Max(12)
