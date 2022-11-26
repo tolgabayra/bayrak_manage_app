@@ -3,8 +3,18 @@ import dotenv from 'dotenv';
 import morgan from "morgan";
 import cookieParser from "cookie-parser"
 const helmet = require("helmet")
+import {AppDataSource} from "./data-source"
 
-
+//Database Connection
+AppDataSource.initialize()
+    .then(() => {
+      console.log("⚡️[DB]: CONNECT POSTGRESQL DB");
+      
+    })
+    .catch(() => {
+      console.log("ERROR!! CAN NOT CONNECT POSTGRESQL DB");
+      
+    })
 
 dotenv.config();
 

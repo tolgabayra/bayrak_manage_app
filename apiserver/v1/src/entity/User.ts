@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm"
+import { Entity, Column, PrimaryColumn, PrimaryGeneratedColumn, OneToMany, JoinTable, ManyToMany } from "typeorm"
 import {
     Length,
     IsEmail,
@@ -6,7 +6,8 @@ import {
     Min,
     Max,
   } from 'class-validator';
-@Entity("users")
+import { Task } from "./Task";
+@Entity("tb_users")
 export class User {
     @PrimaryGeneratedColumn("uuid")
     id!: number
@@ -26,5 +27,8 @@ export class User {
     @Column()
     password!: string
 
+    @ManyToMany(()=> Task,{cascade: true})
+    @JoinTable()
+    tasks!: Task[]
   
 }
