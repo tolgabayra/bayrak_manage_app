@@ -1,9 +1,27 @@
+import { Button, Input, InputGroup, InputRightElement } from '@chakra-ui/react'
 import Link from 'next/link'
-import React from 'react'
+import React, { useState } from 'react'
+import { appAxios } from '../utils/appAxios'
 
-type Props = {}
 
-function signin({ }: Props) {
+function signin() {
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+
+  const [show, setShow] = React.useState(false)
+  const handleClick = () => setShow(!show)
+
+  const submitSignin = () => {
+    appAxios.post("/api/v1/auth/login", {
+
+    })
+  }
+
+
+
+
+
+
   return (
     <div className="flex h-screen bg-indigo-500">
       <div className="w-full max-w-xs m-auto bg-indigo-100 rounded p-5">
@@ -12,13 +30,24 @@ function signin({ }: Props) {
         </header>
         <form>
 
-          <div>
-            <label className="block mb-2 text-indigo-500" htmlFor="email">Email</label>
-            <input className="w-full p-2 mb-6 text-indigo-700 border-b-2 border-indigo-500 outline-none focus:bg-gray-300" type="text" name="email" />
+          <div className='mb-4'>
+            <Input bgColor="white" placeholder='Email' />
           </div>
-          <div>
-            <label className="block mb-2 text-indigo-500" htmlFor="password">Password</label>
-            <input className="w-full p-2 mb-6 text-indigo-700 border-b-2 border-indigo-500 outline-none focus:bg-gray-300" type="password" name="password" />
+          <div className='mb-4'>
+            <InputGroup size='md'>
+              <Input
+
+                bgColor="white"
+                pr='4.5rem'
+                type={show ? 'text' : 'password'}
+                placeholder='Password'
+              />
+              <InputRightElement width='4.5rem'>
+                <Button h='1.75rem' size='sm' onClick={handleClick}>
+                  {show ? 'Hide' : 'Show'}
+                </Button>
+              </InputRightElement>
+            </InputGroup>
           </div>
           <div>
             <button className="w-full bg-indigo-700 hover:bg-blue-700 duration-300 text-white font-bold py-2 px-4 mb-6 rounded" type="submit">
