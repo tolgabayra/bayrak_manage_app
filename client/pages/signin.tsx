@@ -1,8 +1,8 @@
-import { Button, Input, InputGroup, InputRightElement } from '@chakra-ui/react'
+import { Button, Input, InputGroup, InputRightElement, useToast } from '@chakra-ui/react'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import { appAxios } from '../utils/appAxios'
-
 
 function signin() {
   const [email, setEmail] = useState("")
@@ -11,9 +11,34 @@ function signin() {
   const [show, setShow] = React.useState(false)
   const handleClick = () => setShow(!show)
 
-  const submitSignin = () => {
-    appAxios.post("/api/v1/auth/login", {
+  const toast = useToast()
 
+  const submitLogin = () => {
+    appAxios.post("/api/v1/auth/login", {
+      email,
+      password
+    })
+    .then((res) => {
+      console.log(res);
+      toast({
+        title: 'Login is successfull.',
+        description: "You are being redirected to the homepage",
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+        position: 'top-right'
+      })
+    })
+    .catch(err=>{
+      console.log(err);
+      toast({
+        title: 'Login is not successfull !!',
+        description: "Please review your indivation",
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+        position: 'top-right'
+      })
     })
   }
 
@@ -28,15 +53,15 @@ function signin() {
         <header>
           <img className="w-20 mx-auto mb-5" src="https://img.icons8.com/fluent/344/year-of-tiger.png" />
         </header>
-        <form>
+        <div>
 
           <div className='mb-4'>
-            <Input bgColor="white" placeholder='Email' />
+            <Input onChange={(e) => setEmail(e.target.value)} bgColor="white" placeholder='Email' />
           </div>
           <div className='mb-4'>
             <InputGroup size='md'>
               <Input
-
+                onChange={(e) => setPassword(e.target.value)}
                 bgColor="white"
                 pr='4.5rem'
                 type={show ? 'text' : 'password'}
@@ -50,11 +75,11 @@ function signin() {
             </InputGroup>
           </div>
           <div>
-            <button className="w-full bg-indigo-700 hover:bg-blue-700 duration-300 text-white font-bold py-2 px-4 mb-6 rounded" type="submit">
+            <button onClick={submitLogin} className="w-full bg-indigo-700 hover:bg-blue-700 duration-300 text-white font-bold py-2 px-4 mb-6 rounded" type="submit">
               Sign In
             </button>
           </div>
-        </form>
+        </div>
         <footer>
           <Link href="/reset_password" className="text-indigo-700 duration-300 hover:text-blue-800 text-sm float-left">Forgot Password?</Link>
           <Link href="/signup" className="text-indigo-700 hover:text-blue-800 text-sm float-right">Sign Up</Link>
