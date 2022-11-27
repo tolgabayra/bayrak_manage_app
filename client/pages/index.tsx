@@ -11,13 +11,56 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
 
-      </main>
+      <div className="flex flex-col bg-gray-200 min-h-screen">
 
-      <footer>
+        <nav className="bg-indigo-600 px-4 py-3 flex flex-col lg:flex-row lg:items-center flex-shrink-0">
+          <div className="flex justify-between items-center lg:mr-32">
+            <span className="text-white text-xl">FWR</span>
+            <button className="border border-white px-2 py-1 rounded text-white opacity-50 hover:opacity-75 lg:hidden" id="navbar-toggle">
+              <i className="fas fa-bars"></i>
+            </button>
+          </div>
+          <div className="hidden lg:flex flex-grow" id="navbar-collapse">
+            <ul className="flex flex-col mt-3 mb-1 lg:flex-row lg:mx-auto lg:mt-0 lg:mb-0">
+              <li>
+                <a href="#" className="block text-gray-50 hover:text-gray-300 py-2 md:mx-2">Home</a>
+              </li>
+              <li>
+                <a href="#" className="block text-gray-50 hover:text-gray-300 py-2 md:mx-2">About</a>
+              </li>
+              <li>
+                <a href="#" className="block text-gray-50 hover:text-gray-300 py-2 md:mx-2">Features</a>
+              </li>
+              <li>
+                <a href="#" className="block text-gray-50 hover:text-gray-300 py-2 md:mx-2">Contact</a>
+              </li>
+              <li>
+                <a href="#" className="block text-gray-50 hover:text-gray-300 py-2 md:mx-2">Blog</a>
+              </li>
+            </ul>
+            <div className="flex my-3 lg:my-0">
+              <button className="bg-transparent duration-500 hover:bg-white text-white hover:text-gray-900 py-1 px-3 rounded border border-solid border-white mr-2">
+                Sign In
+              </button>
+              <button className="bg-transparent duration-500 hover:bg-white text-white hover:text-gray-900 py-1 px-3 rounded border border-solid border-white mr-2 ">
+                Sign Up
+              </button>
+            </div>
+          </div>
+        </nav>
 
-      </footer>
+        <div className="flex content-center p-4 lg:py-16 lg:px-8 text-center max-w-xl mx-auto my-auto">
+          <div className="px-2">
+            <span className="fas fa-bookmark w-12 h-12 lg:w-16 lg:h-16 bg-indigo-700 rounded-full text-center text-white text-lg lg:text-2xl pt-4 lg:pt-5"></span>
+            <h1 className="text-center text-4xl lg:text-5xl my-3 lg:mt-4">Hello, world!</h1>
+            <p className="text-xl">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid autem dolore dolorem ea inventore molestiae nemo neque non, quidem recusandae soluta tenetur! Aut eaque, placeat!</p>
+            <button className="bg-indigo-700 hover:bg-indigo-800 text-white py-2 px-4 lg:py-3 lg:px-6 rounded mt-6 lg:mt-12">Learn more</button>
+          </div>
+        </div>
+
+      </div>
+
     </div>
   )
 }
