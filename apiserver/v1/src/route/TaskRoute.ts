@@ -8,7 +8,7 @@ const verify = new VerifyMiddleware
 
 
 router.get("/:id", controller.getTask)
-router.post("/", controller.createTask)
+router.post("/",verify.VerifyAuthToken ,controller.createTask)
 router.put("/:id", controller.updateTask)
 router.delete("/:id", controller.deleteTask)
 router.get("/", controller.getAllTask)

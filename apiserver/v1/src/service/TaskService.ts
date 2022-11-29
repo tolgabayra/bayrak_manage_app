@@ -9,15 +9,15 @@ export class TaskService {
     /**
      * create
      */
-    public async create(data: Task) {
+    public async create(data: Task, user_id: any) {
 
         const result = await this.taskRepository.save(data)
-        console.log(result);
+        console.log(result, user_id);
         
         const r = AppDataSource.createQueryBuilder()
         .insert()
         .into("tb_users_tasks_tb_tasks")
-        .values([{tbUsersId: "3dfd8cce-0a19-45f3-b9df-c229cd0c8c65", tbTasksId: result.id}])
+        .values([{tbUsersId: user_id, tbTasksId: result.id}])
         .execute()
         return result
     }

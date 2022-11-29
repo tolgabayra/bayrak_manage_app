@@ -11,8 +11,8 @@ export class AuthController {
 
     public LoginUser = async (req: Request, res: Response): Promise<any> => {
         try {
-            const userData = await this.authService.Login(req.body.email, req.body.password)
-            console.log(userData.length);
+            const userData = await this.authService.Login(req.body.email, this.helper.HashPassword(req.body.password))
+            console.log(userData);
 
             if (userData.length !== 0 && userData.length !== null) {
 
