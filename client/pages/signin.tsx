@@ -3,6 +3,9 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import { appAxios } from '../utils/appAxios'
+import { signIn, getCsrfToken } from 'next-auth/react';
+
+
 
 function signin() {
   const [email, setEmail] = useState("")
@@ -12,14 +15,17 @@ function signin() {
   const handleClick = () => setShow(!show)
 
   const toast = useToast()
+  const router = useRouter()
 
-  const submitLogin = () => {
-    appAxios.post("/api/v1/auth/login", {
-      email,
-      password
+  const submitLogin = async () => {
+    const res = await signIn('credentials', {
+      email: email,
+      password: password,
+      redirect: false,
+      callbackUrl: `${window.location.origin}/home`
     })
-    .then((res) => {
-      console.log(res);
+
+    if (res?.status === 200) {
       toast({
         title: 'Login is successfull.',
         description: "You are being redirected to the homepage",
@@ -28,9 +34,11 @@ function signin() {
         isClosable: true,
         position: 'top-right'
       })
-    })
-    .catch(err=>{
-      console.log(err);
+
+      setTimeout(() => {
+        router.push("/home")
+      }, 3000);
+    }else{
       toast({
         title: 'Login is not successfull !!',
         description: "Please review your indivation",
@@ -39,7 +47,8 @@ function signin() {
         isClosable: true,
         position: 'top-right'
       })
-    })
+    }
+
   }
 
 

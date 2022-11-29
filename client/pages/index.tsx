@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import Link from 'next/link'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
@@ -39,13 +40,19 @@ export default function Home() {
                 <a href="#" className="block text-gray-50 hover:text-gray-300 py-2 md:mx-2">Blog</a>
               </li>
             </ul>
-            <div className="flex my-3 lg:my-0">
-              <button className="bg-transparent duration-500 hover:bg-white text-white hover:text-gray-900 py-1 px-3 rounded border border-solid border-white mr-2">
-                Sign In
-              </button>
-              <button className="bg-transparent duration-500 hover:bg-white text-white hover:text-gray-900 py-1 px-3 rounded border border-solid border-white mr-2 ">
-                Sign Up
-              </button>
+            <div className="flex my-3 lg:my-0 pt-1">
+              <Link href="/signin">
+                <button className="bg-transparent duration-500 hover:bg-white text-white hover:text-gray-900 py-1 px-3 rounded border border-solid border-white mr-2">
+                  Sign In
+                </button>
+              </Link>
+
+              <Link href="/signup">
+                <button className="bg-transparent duration-500 hover:bg-white text-white hover:text-gray-900 py-1 px-3 rounded border border-solid border-white mr-2 ">
+                  Sign Up
+                </button>
+              </Link>
+
             </div>
           </div>
         </nav>
