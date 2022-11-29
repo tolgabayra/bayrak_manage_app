@@ -9,8 +9,17 @@ export class TaskService {
     /**
      * create
      */
-    public create(data: Task) {
-        return this.taskRepository.save(data)
+    public async create(data: Task) {
+
+        const result = await this.taskRepository.save(data)
+        console.log(result);
+        
+        const r = AppDataSource.createQueryBuilder()
+        .insert()
+        .into("tb_users_tasks_tb_tasks")
+        .values([{tbUsersId: "3dfd8cce-0a19-45f3-b9df-c229cd0c8c65", tbTasksId: result.id}])
+        .execute()
+        return result
     }
 
     /**

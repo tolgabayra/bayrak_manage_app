@@ -21,7 +21,6 @@ export class Task{
     @Column()
     priority!: number
 
-    @ManyToMany(()=> User)
-    users!: User[]
+ 
 
 }

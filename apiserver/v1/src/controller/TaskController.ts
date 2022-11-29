@@ -9,6 +9,8 @@ export class TaskController {
 
     public createTask = async (req: Request, res: Response): Promise<void> => {
         try {
+            console.log(req.user);
+            
             const newTask = await this.taskService.create(req.body)
             res.status(201).json(newTask)
         } catch (error) {
