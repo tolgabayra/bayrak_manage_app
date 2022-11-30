@@ -1,5 +1,10 @@
 # bayrak_manage_app
 
+> PROJECT STRUCTURE.
+
+<img src="./Screenshot from 2022-11-30 17-05-30"></img>
+
+
 
 
 Install the dependencies and devDependencies and start the server.
