@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import { appAxios } from '../utils/appAxios'
-import { signIn, getCsrfToken } from 'next-auth/react';
+import { signIn, getCsrfToken, } from 'next-auth/react';
 
 
 
@@ -22,7 +22,7 @@ function signin() {
       email: email,
       password: password,
       redirect: false,
-      callbackUrl: `${window.location.origin}/home`
+      callbackUrl: `/home`
     })
 
     if (res?.status === 200) {
@@ -38,7 +38,7 @@ function signin() {
       setTimeout(() => {
         router.push("/home")
       }, 3000);
-    }else{
+    } else {
       toast({
         title: 'Login is not successfull !!',
         description: "Please review your indivation",
@@ -56,6 +56,7 @@ function signin() {
 
   return (
     <div className="flex h-screen bg-indigo-500">
+      
       <div className="w-full max-w-xs m-auto bg-indigo-100 rounded p-5">
         <header>
           <img className="w-20 mx-auto mb-5" src="https://img.icons8.com/fluent/344/year-of-tiger.png" />

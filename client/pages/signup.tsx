@@ -21,7 +21,7 @@ function signup({ }: Props) {
   const router = useRouter()
 
   const submitRegister = () => {
-    appAxios.post("/api/v1/auth/register", {
+    appAxios.post("auth/register", {
       username,
       email,
       password
