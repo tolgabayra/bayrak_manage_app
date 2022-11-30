@@ -2,6 +2,7 @@ import express, { Express } from 'express';
 import dotenv from 'dotenv';
 import morgan from "morgan";
 import cookieParser from "cookie-parser"
+const cors = require("cors")
 const helmet = require("helmet")
 import {AppDataSource} from "./data-source"
 import TaskRoutes from "./route/TaskRoute"
@@ -25,6 +26,7 @@ const app: Express = express();
 app.use(express.json())
 app.use(morgan("short"))
 app.use(helmet())
+app.use(cors({origin: true, credentials: true}));
 app.use(cookieParser())
 
 //Routes
