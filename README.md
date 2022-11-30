@@ -2,7 +2,7 @@
 
 > PROJECT STRUCTURE.
 
-<img src="./Screenshot from 2022-11-30 17-05-30"></img>
+<img src="./Screenshot from 2022-11-30 17-05-30.png"></img>
 
 
 
