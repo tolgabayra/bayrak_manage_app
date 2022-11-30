@@ -14,6 +14,7 @@ Install the dependencies and devDependencies and start the server.
 - TypeORM
 - POSTGRESQL
 - JWT
+- Socket.IO
 
 ## apiserver
 
